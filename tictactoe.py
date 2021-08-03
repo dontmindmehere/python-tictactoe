@@ -10,8 +10,7 @@ class Board:
     def validateMove(self, x, y):
         if self.arr[x][y] == ' ':
             return True
-        else:
-            return False
+        return False
 
     def setBoardTileAndIncreaseTurnCount(self, x, y):
         self.arr[x][y] = Player.currentPlayer.symbol
@@ -19,7 +18,7 @@ class Board:
 
 
     def draw(self):
-        print("  0   1   2")
+        print("\n  0   1   2")
         for y in range(3):
             output = []
             for x in range(3):
@@ -44,11 +43,13 @@ class Board:
         for i in range(3):
             if self.arr[0][i] != ' ' and self.arr[0][i] == self.arr[1][i] and self.arr[1][i] == self.arr[2][i]:
                 return True
+        return False
 
 
     def drawCondition(self):
         if self.TurnCount == 9:
             return True
+        return False
 
 
 class Player:
@@ -62,18 +63,18 @@ class Player:
 
     def getInputXY(self):
         while True:
-            userinput = input(F"{self.symbol} player, Enter the xy spot you wish to play: ")
-            userparsed = []
+            userinput = input(F"\n{self.symbol} player, Enter the xy spot you wish to play: ")
+            #userparsed = []
 
-            for char in [char for char in userinput if char.isnumeric()]:
-               userparsed.append(int(char))
+            #for char in [char for char in userinput if char.isnumeric()]:
+            #   userparsed.append(int(char))
+            userparsed = [int(char) for char in userinput if char.isnumeric()]
 
             x, y = int(userparsed[1]), int(userparsed[0])
 
             if x > 2 or y > 2:
                 continue
-            else:
-                return x, y
+            return x, y
 
 
     @classmethod
@@ -114,14 +115,14 @@ def main():
         if board.winCondition():
             board.draw()
             run = False
-            print(F"{Player.currentPlayer.symbol} wins.\n\n")
+            print(F"\n{Player.currentPlayer.symbol} wins.\n\n")
             break
 
 
         if board.drawCondition():
             board.draw()
             run = False
-            print("Draw! Restarting..\n\n")
+            print("\nDraw! Restarting..\n\n")
             break
 
 
