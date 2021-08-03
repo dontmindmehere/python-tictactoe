@@ -64,10 +64,7 @@ class Player:
     def getInputXY(self):
         while True:
             userinput = input(F"\n{self.symbol} player, Enter the xy spot you wish to play: ")
-            #userparsed = []
-
-            #for char in [char for char in userinput if char.isnumeric()]:
-            #   userparsed.append(int(char))
+            
             userparsed = [int(char) for char in userinput if char.isnumeric()]
 
             x, y = int(userparsed[1]), int(userparsed[0])
